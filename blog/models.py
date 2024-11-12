@@ -1,3 +1,4 @@
+from taggit.managers import TaggableManager
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -11,6 +12,8 @@ class PublishedManager(models.Manager):
         return super().get_queryset()\
                     .filter(status=Post.Status.PUBLISHED)
 
+
+
 class Post(models.Model):
     class Status(models.TextChoices):
         DRAFT = 'DF','Draft'
@@ -18,7 +21,8 @@ class Post(models.Model):
 
     title = models.CharField(max_length=250,
                              unique_for_date='publish')
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250,
+                            unique_for_date='publish')
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name='blog_posts')
@@ -48,6 +52,9 @@ class Post(models.Model):
                              self.publish.month,
                              self.publish.day,
                              self.slug])
+
+    tags = TaggableManager()
+
 
 
 class Comment(models.Model):
