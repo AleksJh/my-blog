@@ -34,8 +34,10 @@ class Post(models.Model):
                               choices=Status.choices,
                               default=Status.DRAFT)
 
-    objects = models.Manager()  # менеджер, применяемый по умолчанию
-    published = PublishedManager()  # конкретно-прикладной менеджер
+    #Managers
+    objects = models.Manager()
+    published = PublishedManager()
+    tags = TaggableManager()
 
     class Meta:
         ordering = ['-publish']
@@ -53,7 +55,6 @@ class Post(models.Model):
                              self.publish.day,
                              self.slug])
 
-    tags = TaggableManager()
 
 
 
