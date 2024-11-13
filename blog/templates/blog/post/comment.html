@@ -1,12 +1,14 @@
-{% extends "blog/base.html" %}
+{% extends "blog/base.html" %}  <!-- Extends the base template to maintain a consistent layout -->
 
-{% block title %}Add a comment{% endblock %}
+{% block title %}Add a comment{% endblock %}  <!-- Sets the title of the page -->
 
 {% block content %}
   {% if comment %}
+    <!-- Display a message if the comment has been successfully added -->
     <h2>Your comment has been added.</h2>
-    <p><a href="{{ post.get_absolute_url }}">Back to the post</a></p>
+    <p><a href="{{ post.get_absolute_url }}">Back to the post</a></p>  <!-- Link to navigate back to the post -->
   {% else %}
+    <!-- Include the comment form if there is no submitted comment -->
     {% include "blog/post/includes/comment_form.html" %}
   {% endif %}
 {% endblock %}

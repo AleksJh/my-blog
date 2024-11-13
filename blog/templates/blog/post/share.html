@@ -1,7 +1,9 @@
-{% extends "blog/base.html" %}
+{% extends "blog/base.html" %}  <!-- Inherit the base template for common structure -->
 {% block title %}Share a post{% endblock %}
 
 {% block content %}
+
+  <!-- Check if the email was successfully sent -->
   {% if sent %}
     <h1>E-mail successfully sent</h1>
     <p>
@@ -9,11 +11,16 @@
         to {{ form.cleaned_data.to }}.
     </p>
   {% else %}
+    <!-- Display the form for sharing the post if email was not sent yet -->
     <h1>Share "{{ post.title }}" by e-mail</h1>
     <form method="post">
+        <!-- Render the form fields as paragraph elements -->
         {{ form.as_p }}
+        <!-- Include CSRF token for security -->
         {% csrf_token %}
+        <!-- Submit button to send the email -->
         <input type="submit" value="Send e-mail">
     </form>
   {% endif %}
+
 {% endblock %}

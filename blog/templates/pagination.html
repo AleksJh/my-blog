@@ -1,13 +1,19 @@
 <div class="pagination">
   <span class="step-links">
+    <!-- Check if the current page has a previous page and display a "Previous" link -->
     {% if page.has_previous %}
       <a href="?page={{ page.previous_page_number }}">Previous</a>
     {% endif %}
+
+    <!-- Display the current page number and the total number of pages -->
     <span class="current">
       Page {{ page.number }} of {{ page.paginator.num_pages }}.
     </span>
+
+    <!-- Check if the current page has a next page and display a "Next" link -->
     {% if page.has_next %}
     <a href="?page={{ page.next_page_number }}">Next</a>
     {% endif %}
+
   </span>
 </div>

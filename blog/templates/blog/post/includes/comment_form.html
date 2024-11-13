@@ -1,6 +1,12 @@
 <h2>Add a new comment</h2>
+
+<!-- Form for submitting a new comment associated with the current post -->
 <form action="{% url 'blog:post_comment' post.id %}" method="post">
     {{ form.as_p }}
+
+    <!-- CSRF token for protection against cross-site request forgery attacks -->
     {% csrf_token %}
+
+    <!-- Submit button to add the comment -->
     <p><input type="submit" value="Add comment"</p>
 </form>
